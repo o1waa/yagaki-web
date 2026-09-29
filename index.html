@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAGAKI</title>
+
+    <!-- Načtení Tailwind CSS přímo z CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+    <!-- Odkaz na váš soubor se styly pro ikony (social-icon atd.) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    html,
+    body {
+        height: auto !important;
+        min-height: 100% !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+</style>
+
+<body class="bg-slate-950 text-slate-100 min-h-screen overflow-y-auto"></body>
+
+<main class="max-w-4xl mx-auto px-6 py-12 font-sans">
+
+    <!-- Hero / Header -->
+    <header class="space-y-4 mb-12">
+        <h1
+            class="text-5xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+            YAGAKI
+        </h1>
+        <p class="text-xl text-slate-400 font-medium">
+            Producer, Digital Artist & Developer
+        </p>
+
+        <div class="flex flex-wrap gap-3 pt-4">
+            <button onclick="toggleSection('beats')"
+                class="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 transition text-slate-200 focus:ring-2 focus:ring-purple-500">
+                🎵 Beats
+            </button>
+            <button onclick="toggleSection('arts')"
+                class="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 transition text-slate-200 focus:ring-2 focus:ring-purple-500">
+                🎨 Arts
+            </button>
+            <button onclick="toggleSection('programming')"
+                class="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 transition text-slate-200 focus:ring-2 focus:ring-purple-500">
+                💻 Programming
+            </button>
+        </div>
+
+        <!-- Sekce O mně -->
+        <section class="space-y-6 bg-slate-900/50 p-8 rounded-2xl border border-slate-800/80 mb-10">
+            <h2 class="text-2xl font-bold text-white">About me</h2>
+            <p class="text-slate-300 leading-relaxed max-w-2xl">
+                Hey, I'm <span class="text-purple-400 font-semibold">Yagaki</span> — a 20-year-old independent creator
+                from the Czech Republic. I've been making beats and producing music for over 8 years, constantly
+                developing my sound and experimenting with new styles.
+            </p>
+
+            <!-- Vlastnosti / Kličové body -->
+            <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-800">
+                    <h3 class="font-semibold text-purple-300">100% Independent</h3>
+                    <p class="text-sm text-slate-400 mt-1">I work on my projects by myself and put as much of my time,
+                        creativity, and effort into them as possible.</p>
+                </div>
+                <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-800">
+                    <h3 class="font-semibold text-purple-300">Custom Work & Commissions</h3>
+                    <p class="text-sm text-slate-400 mt-1">Whether you need a custom beat, digital artwork, or something
+                        created specifically for your project.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Sekce BEATS (Pouze Přehrávač) -->
+        <section id="beats" class="hidden space-y-6 bg-slate-900/50 p-8 rounded-2xl border border-slate-800 my-6">
+            <div
+                class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">🎵 Beats & Instrumentals</h2>
+                    <p class="text-slate-400 text-sm">A collection of my original beats and instrumentals,</p>
+                </div>
+                <span
+                    class="text-xs font-mono px-3 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-full">
+                    Free to use for non-commercial purposes, contact me for commercial licensing.
+                </span>
+            </div>
+
+        <!-- Hlavní Přehrávač -->
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-semibold">Now Playing</span>
+                    <h3 id="current-track-title" class="text-xl font-bold text-white">Select a track...</h3>
+                </div>
+                <span
+                    class="text-xs px-3 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-full font-mono">
+                </span>
+            </div>
+
+            <!-- HTML5 Audio Prvek -->
+            <audio id="audio-player" controls class="w-full h-10 rounded-lg accent-purple-500">
+                <source id="audio-source" src="" type="audio/mpeg">
+                Váš prohlížeč nepodporuje audio přehrávač.
+            </audio>
+        </div>
+
+        <!-- Playlist / Seznam Beatů -->
+        <div class="space-y-2">
+            <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider px-1">Playlist</h4>
+
+            <!-- Beat 1 -->
+            <button onclick="playTrack('audio/0001-150BPM-CRAFT-@YAGAKI,@JACKRUSS.mp3', 'CRAFT', '150 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">CRAFT</h5>
+                        <p class="text-xs text-slate-400">Glo Gang type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0001-150BPM-CRAFT-@YAGAKI,@JACKRUSS</span>
+            </button>
+
+            <!-- Beat 2 -->
+            <button onclick="playTrack('audio/0002-145BPM-POTION-@YAGAKI,@MARVMINOR.mp3', 'POTION', '145 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">POTION</h5>
+                        <p class="text-xs text-slate-400">gunna type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0002-145BPM-POTION-@YAGAKI,@MARVMINOR</span>
+            </button>
+
+            <!-- Beat 3 -->
+            <button onclick="playTrack('audio/0003-140BPM-GUCCI-@YAGAKI,@HOOMIE.mp3', 'GUCCI', '140 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">GUCCI</h5>
+                        <p class="text-xs text-slate-400">future type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0003-140BPM-GUCCI-@YAGAKI,@HOOMIE</span>
+            </button>
+
+            <button onclick="playTrack('audio/0004-104BPM-LOVE-@YAGAKI,@MAXBEATZZZZ.mp3', 'LOVE', '104 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">LOVE</h5>
+                        <p class="text-xs text-slate-400">future,gunna type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0004-104BPM-LOVE-@YAGAKI,@MAXBEATZZZZ</span>
+            </button>
+
+            <button onclick="playTrack('audio/0005-140BPM-MONEY-@YAGAKI,@PRODDAZ.mp3', 'MONEY', '140 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">MONEY</h5>
+                        <p class="text-xs text-slate-400">yeat,glo gang type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0005-140BPM-MONEY-@YAGAKI,@PRODDAZ</span>
+            </button>
+
+            <button onclick="playTrack('audio/0006-140BPM-POOL-@YAGAKI,@ONEDE.mp3', 'POOL', '140 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">POOL</h5>
+                        <p class="text-xs text-slate-400">glo gang type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0006-140BPM-POOL-@YAGAKI,@ONEDE</span>
+            </button>
+
+            <button onclick="playTrack('audio/0007-140BPM-MOON-@YAGAKI.mp3', 'MOON', '140 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">MOON</h5>
+                        <p class="text-xs text-slate-400">glo gang, playboi carti type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0007-140BPM-MOON-@YAGAKI</span>
+            </button>
+
+            <button onclick="playTrack('audio/0008-143BPM-BLOOD-@YAGAKI,SCOTTFARELL.mp3', 'BLOOD', '143 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">BLOOD</h5>
+                        <p class="text-xs text-slate-400">playboi carti type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0008-143BPM-BLOOD-@YAGAKI,SCOTTFARELL</span>
+            </button>
+
+            <button onclick="playTrack('audio/0009-140BPM-BLOCK-@YAGAKI,MYNAMEPLAYBOY.mp3', 'BLOCK', '140 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">BLOCK</h5>
+                        <p class="text-xs text-slate-400">yeat, playboi carti type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0009-140BPM-BLOCK-@YAGAKI,MYNAMEPLAYBOY</span>
+            </button>
+
+            <button onclick="playTrack('audio/0010-150BPM-CASH-@YAGAKI,@IOHAO.mp3', 'CASH', '150 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">CASH</h5>
+                        <p class="text-xs text-slate-400">yeat, glo gang, playboi carti type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0010-150BPM-CASH-@YAGAKI,@IOHAO</span>
+            </button>
+
+            <button onclick="playTrack('audio/0011-140BPM-AGENDA-@YAGAKI,@PRODHELPLESS.mp3', 'AGENDA', '140 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">AGENDA</h5>
+                        <p class="text-xs text-slate-400">yeat, redda type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0011-140BPM-AGENDA-@YAGAKI,@PRODHELPLESS</span>
+            </button>
+
+            <button onclick="playTrack('audio/0012-148BPM-JUNKIE-@YAGAKI,@HXLLW.mp3', 'JUNKIE', '148 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">JUNKIE</h5>
+                        <p class="text-xs text-slate-400">yung lean, gunna type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0012-148BPM-JUNKIE-@YAGAKI,@HXLLW</span>
+            </button>
+
+            <button onclick="playTrack('audio/0013-98BPM-RAVE-@YAGAKI,@ANGELZAYNAHMUSIC.mp3', 'RAVE', '98 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">RAVE</h5>
+                        <p class="text-xs text-slate-400">kanye west type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0013-98BPM-RAVE-@YAGAKI,@ANGELZAYNAHMUSIC</span>
+            </button>
+
+            <button onclick="playTrack('audio/0014-140BPM-STOP-@YAGAKI,@VICTORKNOX.mp3', 'STOP', '140 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">STOP</h5>
+                        <p class="text-xs text-slate-400">yung lean, gunna type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0014-140BPM-STOP-@YAGAKI,@VICTORKNOX</span>
+            </button>
+
+            <button onclick="playTrack('audio/0015-140BPM-CRASH-@YAGAKI,@PRODBY99VLE.mp3', 'CRASH', '140 BPM')"
+                class="w-full p-4 bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800/80 rounded-xl transition flex items-center justify-between text-left group">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm group-hover:bg-purple-500 group-hover:text-white transition">▶</span>
+                    <div>
+                        <h5 class="font-semibold text-slate-200 group-hover:text-white">CRASH</h5>
+                        <p class="text-xs text-slate-400">young thug, gunna type beat</p>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-500 font-mono">0015-140BPM-CRASH-@YAGAKI,@PRODBY99VLE</span>
+            </button>
+            </section>
+        </div>
+
+
+        <!-- Sekce ARTS -->
+        <section id="arts" class="hidden space-y-6 bg-slate-900/50 p-8 rounded-2xl border border-slate-800 my-6">
+            <div
+                class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">🎨 Digital Art & Paintings</h2>
+                    <p class="text-slate-400 text-sm">Chiaroscuro & expressionist digital oil studies, anime
+                        artwork and cover designs.</p>
+                </div>
+                <span
+                    class="text-xs font-mono px-3 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-full">
+                    Open for Commissions
+                </span>
+            </div>
+
+            <!-- Mřížka s obrazy (Gallery Grid) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+                <!-- Obraz 1: Morpheus -->
+                <div
+                    class="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900 aspect-square">
+                    <!-- Místo 'images/morpheus.png' vložte název/cestu k vašemu souboru -->
+                    <img src="images/morpheus.png" alt="Morpheus"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <h3 class="font-bold text-white text-base">Morpheus</h3>
+                        <p class="text-xs text-purple-300">Digital Painting / Portrait</p>
+                    </div>
+                </div>
+
+                <!-- Obraz 2: Anime Study -->
+                <div
+                    class="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900 aspect-square">
+                    <img src="images/leonardo dicaprio.png" alt="Anime Study"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <h3 class="font-bold text-white text-base">Leonardo Dicaprio</h3>
+                        <p class="text-xs text-purple-300">Digital Illustration</p>
+                    </div>
+                </div>
+
+                <!-- Obraz 3: Album Cover Art -->
+                <div
+                    class="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900 aspect-square">
+                    <img src="images/mirror.png" alt="Cover Art"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <h3 class="font-bold text-white text-base">Mirror</h3>
+                        <p class="text-xs text-purple-300">Digital Illustration</p>
+                    </div>
+                </div>
+
+                <div
+                    class="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900 aspect-square">
+                    <img src="images/brad pitt.png" alt="Cover Art"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <h3 class="font-bold text-white text-base">Brad Pitt</h3>
+                        <p class="text-xs text-purple-300">Digital Illustration</p>
+                    </div>
+                </div>
+
+                <div
+                    class="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900 aspect-square">
+                    <img src="images/white dress.png" alt="Cover Art"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <h3 class="font-bold text-white text-base">White Dress</h3>
+                        <p class="text-xs text-purple-300">Digital Illustration</p>
+                    </div>
+                </div>
+
+                <div
+                    class="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900 aspect-square">
+                    <img src="images/zillakami.png" alt="Cover Art"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 p-4 flex flex-col justify-end">
+                        <h3 class="font-bold text-white text-base">ZillaKami</h3>
+                        <p class="text-xs text-purple-300">Digital Illustration</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section id="programming" class="hidden space-y-4 bg-slate-900/50 p-8 rounded-2xl border border-slate-800 my-6">
+            <h2 class="text-2xl font-bold text-white mb-4">💻 Programming & Projects</h2>
+            <p class="text-slate-300">Ukázky vašich webových aplikací, skriptů a vývojářských projektů.</p>
+
+        </section>
+
+        <div class="flex gap-3 pt-4">
+            <a href="https://www.instagram.com/prod.yagaki/" target="_blank"
+                class="p-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl transition text-slate-300 hover:text-white flex items-center justify-center">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+            </a>
+
+            <a href="https://www.youtube.com/@prodyagaki" target="_blank"
+                class="p-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl transition text-slate-300 hover:text-white flex items-center justify-center">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path
+                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+            </a>
+        </div>
+
+
+</main>
+
+<script>
+    function toggleSection(sectionId) {
+        const target = document.getElementById(sectionId);
+
+
+        if (!target.classList.contains('hidden')) {
+            target.classList.add('hidden');
+            return;
+        }
+
+
+        ['beats', 'arts', 'programming'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('hidden');
+        });
+
+
+        target.classList.remove('hidden');
+    }
+</script>
+
+<script>
+    function playTrack(fileUrl, title) {
+      const player = document.getElementById('audio-player');
+      const titleDisplay = document.getElementById('current-track-title');
+
+      if (!player) return;
+
+      // Nastavení cesty k hudbě a názvu
+      player.src = fileUrl;
+      
+      if (titleDisplay) {
+        titleDisplay.textContent = title;
+      }
+
+      // Spuštění přehrávání bez jakýchkoliv okének
+      player.load();
+      player.play().catch(err => {
+        console.log("Přehrávání nebylo spuštěno:", err);
+      });
+    }
+
+    // Inicializace ikon (pokud používáte Lucide)
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+
+
+</body>
+
+</html>

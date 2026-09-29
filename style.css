@@ -1,0 +1,44 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(27, 3, 89);
+    margin: 0;
+}
+
+.social-wrapper {
+    display: flex;
+    gap: 25px;
+}
+
+.social-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgb(27, 3, 89);  
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-icon:hover {
+    transform: translateY(10px) scale(1.15);
+    color: rgb(139, 110, 246);
+}
+
+.instagram-hover {
+    background-color: rgb(139, 110, 246);
+    box-shadow: 0 5px 15px rgba(139, 110, 246, 0.4);
+}
+
+.youtube-hover {
+    background-color: rgb(139, 110, 246);
+    box-shadow: 0 5px 15px rgba(139, 110, 246, 0.4);
+}
+
